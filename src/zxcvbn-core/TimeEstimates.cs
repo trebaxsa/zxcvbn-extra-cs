@@ -50,44 +50,41 @@ namespace Zxcvbn
             string displayString;
 
             if (seconds < 1)
-                return "less than a second";
+                return TimeEstimatesResources.LessOneSecond;
             if (seconds < minute)
             {
                 displayNumber = (int)Math.Round(seconds);
-                displayString = $"{displayNumber} second";
+                displayString = $"{displayNumber} {(displayNumber == 1 ? TimeEstimatesResources.Second : TimeEstimatesResources.Seconds)}";
             }
             else if (seconds < hour)
             {
                 displayNumber = (int)Math.Round(seconds / minute);
-                displayString = $"{displayNumber} minute";
+                displayString = $"{displayNumber} {(displayNumber == 1 ? TimeEstimatesResources.Minute : TimeEstimatesResources.Minutes)}";
             }
             else if (seconds < day)
             {
                 displayNumber = (int)Math.Round(seconds / hour);
-                displayString = $"{displayNumber} hour";
+                displayString = $"{displayNumber} {(displayNumber == 1 ? TimeEstimatesResources.Hour : TimeEstimatesResources.Hours)}";
             }
             else if (seconds < month)
             {
                 displayNumber = (int)Math.Round(seconds / day);
-                displayString = $"{displayNumber} day";
+                displayString = $"{displayNumber} {(displayNumber == 1 ? TimeEstimatesResources.Day : TimeEstimatesResources.Days)}";
             }
             else if (seconds < year)
             {
                 displayNumber = (int)Math.Round(seconds / month);
-                displayString = $"{displayNumber} month";
+                displayString = $"{displayNumber} {(displayNumber == 1 ? TimeEstimatesResources.Month : TimeEstimatesResources.Months)}";
             }
             else if (seconds < century)
             {
                 displayNumber = (int)Math.Round(seconds / year);
-                displayString = $"{displayNumber} year";
+                displayString = $"{displayNumber} {(displayNumber == 1 ? TimeEstimatesResources.Year : TimeEstimatesResources.Years)}";
             }
             else
             {
-                displayString = "centuries";
+                displayString = TimeEstimatesResources.Centuries;
             }
-
-            if (displayNumber.HasValue && displayNumber != 1)
-                displayString += "s";
 
             return displayString;
         }

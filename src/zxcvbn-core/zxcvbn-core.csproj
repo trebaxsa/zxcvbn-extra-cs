@@ -28,8 +28,8 @@
     <NeutralLanguage>en</NeutralLanguage>
     <Company>TREBAX S.A.</Company>
     <Version>1.0.3</Version>
-    <AssemblyVersion>1.0.3.1</AssemblyVersion>
-    <FileVersion>1.0.3.1</FileVersion>
+    <AssemblyVersion>1.0.3.2</AssemblyVersion>
+    <FileVersion>1.0.3.2</FileVersion>
     <AssemblyName>Trebax.Zxcvbn.Core</AssemblyName>
   </PropertyGroup>
 
@@ -74,11 +74,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>FeedbackResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="TimeEstimatesResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TimeEstimatesResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="FeedbackResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FeedbackResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="TimeEstimatesResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TimeEstimatesResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
