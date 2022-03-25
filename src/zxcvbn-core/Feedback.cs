@@ -14,8 +14,8 @@ namespace Zxcvbn
             Warning = string.Empty,
             Suggestions = new[]
             {
-                "Use a few words, avoid common phrases",
-                "No need for symbols, digits, or uppercase letters",
+                FeedbackResources.Default1,
+                FeedbackResources.Default2,
             },
         };
 
@@ -42,7 +42,7 @@ namespace Zxcvbn
             var longestMatch = sequence.OrderBy(c => c.Token.Length).Last();
 
             var feedback = GetMatchFeedback(longestMatch, sequence.Count() == 1);
-            var extraFeedback = "Add another word or two. Uncommon words are better.";
+            var extraFeedback = FeedbackResources.ExtraFeedback;
 
             if (feedback != null)
             {
@@ -69,40 +69,40 @@ namespace Zxcvbn
                 if (isSoleMatch && !match.L33t && !match.Reversed)
                 {
                     if (match.Rank <= 10)
-                        warning = "This is a top-10 common password";
+                        warning = FeedbackResources.Top10;
                     else if (match.Rank <= 100)
-                        warning = "This is a top-100 common password";
+                        warning = FeedbackResources.Top100;
                     else
-                        warning = "This is a very common password";
+                        warning = FeedbackResources.VeryCommon;
                 }
                 else if (match.GuessesLog10 <= 4)
                 {
-                    warning = "This is similar to a commonly used password";
+                    warning = FeedbackResources.SimilarToCommon;
                 }
             }
             else if (match.DictionaryName == "english" && isSoleMatch)
             {
-                warning = "A word by itself is easy to guess";
+                warning = FeedbackResources.WordItselft;
             }
             else if (match.DictionaryName == "surnames" || match.DictionaryName == "male_names" || match.DictionaryName == "female_names")
             {
                 if (isSoleMatch)
-                    warning = "Names and surnames by themselves are easy to guess";
+                    warning = FeedbackResources.NamesThemselves;
                 else
-                    warning = "Common names and surnames are easy to guess";
+                    warning = FeedbackResources.CommonNames;
             }
 
             var suggestions = new List<string>();
             var word = match.Token;
             if (char.IsUpper(word[0]))
-                suggestions.Add("Capitalization doesn't help very much");
+                suggestions.Add(FeedbackResources.Capitalization);
             else if (word.All(c => char.IsUpper(c)) && word.ToLower() != word)
-                suggestions.Add("All-uppercase is almost as easy to guess as all-lowercase");
+                suggestions.Add(FeedbackResources.AllUppercas);
 
             if (match.Reversed && match.Token.Length >= 4)
-                suggestions.Add("Reversed words aren't much harder to guess");
+                suggestions.Add(FeedbackResources.ReversedWords);
             if (match.L33t)
-                suggestions.Add("Predictable substitutions like '@' instead of 'a' don't help very much");
+                suggestions.Add(FeedbackResources.Substitutions);
 
             return new FeedbackItem
             {
@@ -121,20 +121,20 @@ namespace Zxcvbn
                 case "spatial":
                     return new FeedbackItem
                     {
-                        Warning = (match as SpatialMatch).Turns == 1 ? "Straight rows of keys are easy to guess" : "Short keyboard patterns are easy to guess",
+                        Warning = (match as SpatialMatch).Turns == 1 ? FeedbackResources.KeyRows : FeedbackResources.ShortKeyboardPatterns,
                         Suggestions = new List<string>
                         {
-                            "Use a longer keyboard pattern with more turns",
+                            FeedbackResources.UseLongerPattern,
                         },
                     };
 
                 case "repeat":
                     return new FeedbackItem
                     {
-                        Warning = (match as RepeatMatch).BaseToken.Length == 1 ? "Repeats like 'aaa' are easy to guess" : "Repeats like 'abcabcabc' are only slightly harder to guess than 'abc'",
+                        Warning = (match as RepeatMatch).BaseToken.Length == 1 ? FeedbackResources.SingleRepeats : FeedbackResources.GroupRepeats,
                         Suggestions = new List<string>
                         {
-                            "Avoid repeated words and characters",
+                            FeedbackResources.AvoidRepeats,
                         },
                     };
 
@@ -143,11 +143,11 @@ namespace Zxcvbn
                     {
                         return new FeedbackItem
                         {
-                            Warning = "Recent years are easy to guess",
+                            Warning = FeedbackResources.RecentYears,
                             Suggestions = new List<string>
                             {
-                                "Avoid recent years",
-                                "Avoid years that are associated with you",
+                                FeedbackResources.AvoidRecentYears,
+                                FeedbackResources.AvoidAssociatedYears,
                             },
                         };
                     }
@@ -157,10 +157,10 @@ namespace Zxcvbn
                 case "date":
                     return new FeedbackItem
                     {
-                        Warning = "Dates are often easy to guess",
+                        Warning = FeedbackResources.Dates,
                         Suggestions = new List<string>
                         {
-                            "Avoid dates and years that are associated with you",
+                            FeedbackResources.AvoidAssociatedDates,
                         },
                     };
             }

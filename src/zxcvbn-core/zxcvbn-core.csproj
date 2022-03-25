@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net6</TargetFrameworks>
-    <PackageId>zxcvbn-extra</PackageId>
-    <Authors>AdisonCavani;mickford;Tony Richards (trichards57);Dan Wheeler;DropBox</Authors>
+    <PackageId>Trebax.Zxcvbn.Core</PackageId>
+    <Authors>dteijo;AdisonCavani;mickford;Tony Richards (trichards57);Dan Wheeler;DropBox</Authors>
     <Product>zxcvbn-extra</Product>
     <Description>C#/.NET Zxcvbn JS password strength estimation library.  A fork of zxcvbn-cs by trichards57 that restores entropy</Description>
-    <PackageProjectUrl>https://github.com/AdisonCavani/zxcvbn-extra-cs</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/AdisonCavani/zxcvbn-extra-cs.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/trebaxsa/zxcvbn-extra-cs</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/trebaxsa/zxcvbn-extra-cs.git</RepositoryUrl>
     <PackageTags>password;strength;validation;zxcvbn</PackageTags>
     <Copyright>Copyright (c) 2012 Dropbox, Inc. Copyright (c) 2020-2021 Tony Richards. Copyright (c) 2022 Adison Cavani</Copyright>
     <RootNamespace>Zxcvbn</RootNamespace>
-    <DocumentationFile>$(TargetDir)zxcvbn-core.xml</DocumentationFile>
+    <DocumentationFile>$(TargetDir)Trebax.Zxcvbn.Core.xml</DocumentationFile>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -24,6 +24,13 @@
     <SignAssembly>False</SignAssembly>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Company>TREBAX S.A.</Company>
+    <Version>1.0.3</Version>
+    <AssemblyVersion>1.0.3.1</AssemblyVersion>
+    <FileVersion>1.0.3.1</FileVersion>
+    <AssemblyName>Trebax.Zxcvbn.Core</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
@@ -60,5 +67,18 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="FeedbackResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FeedbackResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="FeedbackResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FeedbackResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
