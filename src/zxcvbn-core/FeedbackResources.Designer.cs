@@ -133,7 +133,7 @@ namespace Zxcvbn {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use a few words, void common phrases.
+        ///   Looks up a localized string similar to Use a few words, avoid common phrases.
         /// </summary>
         internal static string Default1 {
             get {

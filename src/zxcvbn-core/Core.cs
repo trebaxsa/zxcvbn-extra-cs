@@ -14,8 +14,9 @@ namespace Zxcvbn
         /// </summary>
         /// <param name="password">The password to assess.</param>
         /// <param name="userInputs">Optionally, an enumarable of user data.</param>
+        /// <param name="userInputsWarningMessage">Optionally, a message for user data matches.</param>
         /// <returns>Result for the password.</returns>
-        public static Result EvaluatePassword(string password, IEnumerable<string> userInputs = null)
+        public static Result EvaluatePassword(string password, IEnumerable<string> userInputs = null, string userInputsWarningMessage = "")
         {
             password ??= string.Empty;
             userInputs ??= Enumerable.Empty<string>();
@@ -33,7 +34,7 @@ namespace Zxcvbn
 
             var attackTimes = TimeEstimates.EstimateAttackTimes(result.Guesses);
             result.Score = attackTimes.Score;
-            var feedback = Feedback.GetFeedback(result.Score, result.Sequence);
+            var feedback = Feedback.GetFeedback(result.Score, result.Sequence, userInputsWarningMessage);
             var entropy = EntropyEstimates.EstimateEntropy(MinimumEntropy.EstimateMinimumEntropy(password, matches));
 
             var finalResult = new Result
@@ -42,7 +43,7 @@ namespace Zxcvbn
                 CrackTime = attackTimes.CrackTimesSeconds,
                 CrackTimeDisplay = attackTimes.CrackTimesDisplay,
                 Entropy = entropy.Value,
-                Score = attackTimes.Score,
+                Score = PasswordScore.FromValue(attackTimes.Score),
                 MatchSequence = result.Sequence,
                 Guesses = result.Guesses,
                 Password = result.Password,

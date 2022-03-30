@@ -8,6 +8,23 @@ namespace Zxcvbn
     public class FeedbackItem
     {
         /// <summary>
+        /// Gets the default feedback, not precomputed to take into account CultureInfo changes.
+        /// </summary>
+        public static FeedbackItem Default {
+            get {
+                return new()
+                {
+                    Warning = string.Empty,
+                    Suggestions = new[]
+                    {
+                        FeedbackResources.Default1,
+                        FeedbackResources.Default2,
+                    },
+                };
+            }
+        }
+
+        /// <summary>
         /// Gets the list of suggestions that can be presented.
         /// </summary>
         public IList<string> Suggestions { get; internal set; }

@@ -12,3 +12,4 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1633:File should have header", Justification = "No header required.")]
 [assembly: SuppressMessage("Globalization", "CA1304:Specify CultureInfo", Justification = "Not supported in all the desired target libraries.")]
 [assembly: SuppressMessage("Globalization", "CA1307:Specify StringComparison", Justification = "Not supported in all the desired target libraries.")]
+[assembly: SuppressMessage("Style", "IDE0161:Convert to file-scoped namespace", Justification = "To match this project's coding style.")]

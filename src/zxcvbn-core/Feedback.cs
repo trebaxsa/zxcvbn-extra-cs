@@ -9,26 +9,17 @@ namespace Zxcvbn
     /// </summary>
     internal static class Feedback
     {
-        private static readonly FeedbackItem DefaultFeedback = new()
-        {
-            Warning = string.Empty,
-            Suggestions = new[]
-            {
-                FeedbackResources.Default1,
-                FeedbackResources.Default2,
-            },
-        };
-
         /// <summary>
         /// Gets feedback based on the provided score and matches.
         /// </summary>
         /// <param name="score">The score to assess.</param>
         /// <param name="sequence">The sequence of matches to assess.</param>
+        /// <param name="userInputsWarningMessage"> The warning message for user data matches.</param>
         /// <returns>Any warnings and suggestiongs about the password matches.</returns>
-        public static FeedbackItem GetFeedback(int score, IEnumerable<Match> sequence)
+        public static FeedbackItem GetFeedback(int score, IEnumerable<Match> sequence, string userInputsWarningMessage)
         {
             if (!sequence.Any())
-                return DefaultFeedback;
+                return FeedbackItem.Default;
 
             if (score > 2)
             {
@@ -41,7 +32,7 @@ namespace Zxcvbn
 
             var longestMatch = sequence.OrderBy(c => c.Token.Length).Last();
 
-            var feedback = GetMatchFeedback(longestMatch, sequence.Count() == 1);
+            var feedback = GetMatchFeedback(longestMatch, sequence.Count() == 1, userInputsWarningMessage);
             var extraFeedback = FeedbackResources.ExtraFeedback;
 
             if (feedback != null)
@@ -60,7 +51,7 @@ namespace Zxcvbn
             return feedback;
         }
 
-        private static FeedbackItem GetDictionaryMatchFeedback(DictionaryMatch match, bool isSoleMatch)
+        private static FeedbackItem GetDictionaryMatchFeedback(DictionaryMatch match, bool isSoleMatch, string userInputsWarningMessage)
         {
             var warning = string.Empty;
 
@@ -91,6 +82,10 @@ namespace Zxcvbn
                 else
                     warning = FeedbackResources.CommonNames;
             }
+            else if (match.DictionaryName == "user_inputs")
+            {
+                warning = userInputsWarningMessage;
+            }
 
             var suggestions = new List<string>();
             var word = match.Token;
@@ -111,12 +106,12 @@ namespace Zxcvbn
             };
         }
 
-        private static FeedbackItem GetMatchFeedback(Match match, bool isSoleMatch)
+        private static FeedbackItem GetMatchFeedback(Match match, bool isSoleMatch, string userInputsWarningMessage)
         {
             switch (match.Pattern)
             {
                 case "dictionary":
-                    return GetDictionaryMatchFeedback(match as DictionaryMatch, isSoleMatch);
+                    return GetDictionaryMatchFeedback(match as DictionaryMatch, isSoleMatch, userInputsWarningMessage);
 
                 case "spatial":
                     return new FeedbackItem

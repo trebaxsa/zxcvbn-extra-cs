@@ -57,6 +57,6 @@ namespace Zxcvbn
         /// <summary>
         /// Gets a score from 0 to 4 (inclusive), with 0 being least secure and 4 being most secure, calculated from the nubmer of guesses estimated to be needed.
         /// </summary>
-        public int Score { get; internal set; }
+        public PasswordScore Score { get; internal set; }
     }
 }

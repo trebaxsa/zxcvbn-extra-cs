@@ -10,7 +10,7 @@ public class CoreTests
     {
         var result = Zxcvbn.Core.EvaluatePassword("turtledogspicemagic");
 
-        result.Score.Should().BeGreaterOrEqualTo(3);
+        result.Score.Value.Should().BeGreaterOrEqualTo(3);
         result.Feedback.Suggestions.Count.Should().Be(0);
     }
 
@@ -18,7 +18,7 @@ public class CoreTests
     public void GoodScoreShallHaveNoWarning()
     {
         var result = Zxcvbn.Core.EvaluatePassword("turtleturtledogspicemagic");
-        result.Score.Should().BeGreaterOrEqualTo(3);
+        result.Score.Value.Should().BeGreaterOrEqualTo(3);
         result.Feedback.Warning.Should().Be(string.Empty);
     }
 
@@ -26,7 +26,7 @@ public class CoreTests
     public void EmptyPasswordShallHaveZeroScore()
     {
         var result = Zxcvbn.Core.EvaluatePassword(string.Empty);
-        result.Score.Should().Be(0);
+        result.Score.Value.Should().Be(0);
     }
 
     [Fact]

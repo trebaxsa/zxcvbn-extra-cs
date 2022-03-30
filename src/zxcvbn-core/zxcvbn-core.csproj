@@ -62,6 +62,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <PackageReference Include="Ardalis.SmartEnum" Version="2.0.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -69,10 +70,20 @@
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="PasswordScore.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PasswordScore.tt</DependentUpon>
+    </Compile>
     <Compile Update="FeedbackResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>FeedbackResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PasswordScoreResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PasswordScoreResources.resx</DependentUpon>
     </Compile>
     <Compile Update="TimeEstimatesResources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -85,9 +96,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FeedbackResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="PasswordScoreResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PasswordScoreResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="TimeEstimatesResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TimeEstimatesResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="PasswordScore.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PasswordScore.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 </Project>
