@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dictionaries\*.lst" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+    <None Remove="Dictionaries\spanish.lst" />
     <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

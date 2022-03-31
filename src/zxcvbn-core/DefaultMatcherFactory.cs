@@ -29,12 +29,14 @@ namespace Zxcvbn
             {
                 new DictionaryMatcher("passwords", "passwords.lst"),
                 new DictionaryMatcher("english", "english.lst"),
+                new DictionaryMatcher("spanish", "spanish.lst"),
                 new DictionaryMatcher("male_names", "male_names.lst"),
                 new DictionaryMatcher("female_names", "female_names.lst"),
                 new DictionaryMatcher("surnames", "surnames.lst"),
                 new DictionaryMatcher("us_tv_and_film", "us_tv_and_film.lst"),
                 new ReverseDictionaryMatcher("passwords", "passwords.lst"),
                 new ReverseDictionaryMatcher("english", "english.lst"),
+                new ReverseDictionaryMatcher("spanish", "spanish.lst"),
                 new ReverseDictionaryMatcher("male_names", "male_names.lst"),
                 new ReverseDictionaryMatcher("female_names", "female_names.lst"),
                 new ReverseDictionaryMatcher("surnames", "surnames.lst"),
@@ -45,7 +47,7 @@ namespace Zxcvbn
             {
                 new RepeatMatcher(),
                 new SequenceMatcher(),
-                new RegexMatcher("19\\d\\d|200\\d|201\\d", "recent_year"),
+                new RegexMatcher("19\\d\\d|20[012]\\d", "recent_year"),
                 new DateMatcher(),
                 new SpatialMatcher(),
                 new L33tMatcher(dictionaryMatchers),

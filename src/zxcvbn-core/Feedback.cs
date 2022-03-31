@@ -71,7 +71,7 @@ namespace Zxcvbn
                     warning = FeedbackResources.SimilarToCommon;
                 }
             }
-            else if (match.DictionaryName == "english" && isSoleMatch)
+            else if ((match.DictionaryName == "english" || match.DictionaryName == "spanish") && isSoleMatch)
             {
                 warning = FeedbackResources.WordItselft;
             }

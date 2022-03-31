@@ -160,7 +160,7 @@
     <value>Nombres y apellidos por sí solos son fáciles de adivinar</value>
   </data>
   <data name="RecentYears" xml:space="preserve">
-    <value>Años recientes son fáciles de adivinar</value>
+    <value>Años recientes o próximos son fáciles de adivinar</value>
   </data>
   <data name="ReversedWords" xml:space="preserve">
     <value>Utilizar palabras invertidas no hace que sea mucho más difícil de adivinar</value>
@@ -173,7 +173,6 @@
   </data>
   <data name="SingleRepeats" xml:space="preserve">
     <value>Repeticiones del tipo 'aaa' son fáciles de adivinar</value>
-    <comment> </comment>
   </data>
   <data name="Substitutions" xml:space="preserve">
     <value>Sustituciones simples como '@' en lugar de 'a' no son de gran utilidad</value>
